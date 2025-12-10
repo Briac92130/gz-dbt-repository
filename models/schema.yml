@@ -1,0 +1,14 @@
+version: 2
+sources:
+   - name: gz_raw_data
+     database: boreal-analog-479210-j6
+     schema: gz_raw_data
+     loader: bigquery
+     description: Raw data from Greenweez
+     freshness:
+       warn_after: {count: 12, period: hour}
+       error_after: {count: 24, period: hour}
+     tables:
+       - name: raw_gz_product
+       - name: raw_gz_sales
+       - name: raw_gz_ship
