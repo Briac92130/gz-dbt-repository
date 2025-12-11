@@ -78,7 +78,7 @@ sources:
          tests:
           - unique:
               column_name: "( date_date || '-' || campaign_key )"
-              
+
        - name: bing
          identifier: raw_gz_bing
          description: Ads Bing Ads cost, impressions and daily clicks.
@@ -144,3 +144,26 @@ sources:
          tests:
           - unique:
               column_name: "( date_date || '-' || campaign_key )"
+
+models:
+  - name: int_campaigns_day
+    description: Aggregated daily advertising metrics combining all ad platforms
+      (Adwords, Bing, Criteo, Facebook). Output is one row per day and source.
+    columns:
+      - name: date_date
+        description: Date of the advertising activity
+        tests:
+          - not_null
+      - name: paid_source
+        description: Advertising source (Adwords, Bing, Criteo, Facebook)
+        tests:
+          - not_null
+      - name: ads_cost
+        description: Total advertising cost for the day and source
+      - name: impressions
+        description: Total number of impressions for the day and source
+      - name: clicks
+        description: Total number of clicks for the day and source
+    tests:
+      - unique:
+          column_name: "(date_date || '-' || paid_source)"
