@@ -1,7 +1,13 @@
 with 
 campaigns_day as (
-    select *
+    -- We agregate here to have one line on date
+    select
+        date_date,
+        sum(ads_cost)    as ads_cost,
+        sum(impressions) as ads_impression,
+        sum(clicks)      as ads_clicks
     from {{ ref('int_campaigns_day') }}
+    group by date_date
 ),
 
 finance as (
@@ -12,17 +18,17 @@ finance as (
 joined as (
     select
         finance.date_date as date,
-        -- computed field
-        (finance.operational_margin - campaigns_day.ads_cost) as ads_margin,
+
+        -- calculated field
+        (finance.operational_margin - coalesce(campaigns_day.ads_cost, 0)) as ads_margin,
+
         finance.average_basket,
         finance.operational_margin,
-        
-        -- from int_campaigns_day
-        campaigns_day.ads_cost,
-        campaigns_day.impressions as ads_impression,
-        campaigns_day.clicks      as ads_clicks,
 
-        -- from finance_days
+        campaigns_day.ads_cost,
+        campaigns_day.ads_impression,
+        campaigns_day.ads_clicks,
+
         finance.quantity,
         finance.revenue,
         finance.purchase_cost,
@@ -39,3 +45,4 @@ joined as (
 select *
 from joined
 order by date desc
+

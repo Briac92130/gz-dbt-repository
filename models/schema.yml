@@ -167,3 +167,4 @@ models:
     tests:
       - unique:
           column_name: "(date_date || '-' || paid_source)"
+
