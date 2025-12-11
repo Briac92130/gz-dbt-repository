@@ -168,3 +168,42 @@ models:
       - unique:
           column_name: "(date_date || '-' || paid_source)"
 
+
+  - name: finance_campaigns_day
+    description: >
+      Daily financial performance combining advertising spend (from int_campaigns_day)
+      with operational and commercial metrics (from finance_days). Produces one row
+      per day with advertising and business KPIs aggregated.
+    columns:
+
+      - name: date
+        description: Date of the day's financial and advertising activity
+        tests:
+          - not_null
+          - unique
+      - name: ads_margin
+        description: Advertising margin computed as operational_margin - ads_cost
+      - name: average_basket
+        description: Average value of the customer basket for the given day
+      - name: operational_margin
+        description: Operational margin of the business for the day
+      - name: ads_cost
+        description: Total advertising cost aggregated across all platforms
+      - name: ads_impression
+        description: Total advertising impressions across all ad platforms for the day
+      - name: ads_clicks
+        description: Total number of advertising clicks for the day
+      - name: quantity
+        description: Total quantity of products sold for the day
+      - name: revenue
+        description: Total daily revenue generated
+      - name: purchase_cost
+        description: Total cost of products sold for the day
+      - name: margin
+        description: Gross margin generated on the given day
+      - name: shipping_fee
+        description: Customer shipping fees collected on the day
+      - name: log_cost
+        description: Logistics cost for the day
+      - name: ship_cost
+        description: Shipping cost paid by the company for the day
