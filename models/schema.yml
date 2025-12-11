@@ -75,7 +75,10 @@ sources:
             description: nb of impressions
           - name: click
             description: nb of clicks
-
+         tests:
+          - unique:
+              column_name: "( date_date || '-' || campaign_key )"
+              
        - name: bing
          identifier: raw_gz_bing
          description: Ads Bing Ads cost, impressions and daily clicks.
@@ -94,6 +97,9 @@ sources:
             description: nb of impressions
           - name: click
             description: nb of clicks
+         tests:
+          - unique:
+              column_name: "( date_date || '-' || campaign_key )"
 
        - name: criteo
          identifier: raw_gz_criteo
@@ -113,6 +119,9 @@ sources:
             description: nb of impressions
           - name: click
             description: nb of clicks
+         tests:
+          - unique:
+              column_name: "( date_date || '-' || campaign_key )"
 
        - name: facebook
          identifier: raw_gz_facebook
@@ -132,3 +141,6 @@ sources:
             description: nb of impressions
           - name: click
             description: nb of clicks
+         tests:
+          - unique:
+              column_name: "( date_date || '-' || campaign_key )"
