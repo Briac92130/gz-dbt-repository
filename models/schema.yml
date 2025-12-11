@@ -10,5 +10,51 @@ sources:
        error_after: {count: 24, period: hour}
      tables:
        - name: raw_gz_product
+         identifier: raw_gz_product
+         description: product of Greenweez 
+         loaded_at_field: products_id
+         columns:
+           - name: purchase_price
+             description: purchase price   
+           - name: products_id
+             description: the id of the purchased product  
+             tests:
+             - not_null
+             - unique
+             
+
        - name: raw_gz_sales
+         identifier: raw_gz_sales
+         description: sales of Greenweez / we have on row per product_id found in each orders_id
+         loaded_at_field: date_date
+         columns:
+           - name: date_date
+             description: date of purchase
+           - name: orders_id
+             description: orders id of the purchase
+           - name: pdt_id
+             description: products id
+           - name: revenue
+             description: revenue of sales
+           - name: quantity
+             description: quantity of sales
+         tests:
+          - unique:
+              column_name: "( orders_id || '-' || pdt_id )"
+
        - name: raw_gz_ship
+         identifier: raw_gz_ship
+         description: shipping cost of Greenweez / we have on row per orders_id found in each shipping_fee
+         loaded_at_field: orders_id
+         columns:
+           - name: orders_id
+             description: orders_id
+             tests:
+             - not_null
+             - unique
+           - name: shipping cost
+             description: shipping cost per orders_id
+           - name: shipping_fee
+             description: shipping fee
+           - name: log_cost
+             description: logistic cost
