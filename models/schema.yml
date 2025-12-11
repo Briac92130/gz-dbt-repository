@@ -12,7 +12,6 @@ sources:
        - name: raw_gz_product
          identifier: raw_gz_product
          description: product of Greenweez 
-         loaded_at_field: _etl_loaded_at
          columns:
            - name: purchase_price
              description: purchase price   
@@ -26,7 +25,6 @@ sources:
        - name: raw_gz_sales
          identifier: raw_gz_sales
          description: sales of Greenweez / we have on row per product_id found in each orders_id
-         loaded_at_field: _etl_loaded_at
          columns:
            - name: date_date
              description: date of purchase
@@ -45,7 +43,6 @@ sources:
        - name: raw_gz_ship
          identifier: raw_gz_ship
          description: shipping cost of Greenweez / we have on row per orders_id found in each shipping_fee
-         loaded_at_field: _etl_loaded_at
          columns:
            - name: orders_id
              description: orders_id
@@ -58,3 +55,80 @@ sources:
              description: shipping fee
            - name: log_cost
              description: logistic cost
+
+
+       - name: adwords
+         identifier: raw_gz_adwords
+         description: cost, impressions and click by campaign per day
+         columns:
+          - name: date_date
+            description: date where the Ads was run
+          - name: paid_source
+            description: Where the Ads was placed, in this case all are Adwords
+          - name: campaign_key
+            description: primary key
+          - name: camPGN_name
+            description: Campaign name
+          - name: ads_cost
+            description: Cost of the Ads
+          - name: impression
+            description: nb of impressions
+          - name: click
+            description: nb of clicks
+
+       - name: bing
+         identifier: raw_gz_bing
+         description: Ads Bing Ads cost, impressions and daily clicks.
+         columns:
+          - name: date_date
+            description: date where the Ads was run
+          - name: paid_source
+            description: Where the Ads was placed, in this case all are Adwords
+          - name: campaign_key
+            description: primary key
+          - name: camPGN_name
+            description: Campaign name
+          - name: ads_cost
+            description: Cost of the Ads
+          - name: impression
+            description: nb of impressions
+          - name: click
+            description: nb of clicks
+
+       - name: criteo
+         identifier: raw_gz_criteo
+         description: Ads Criteo cost, impressions, clicks.
+         columns:
+          - name: date_date
+            description: date where the Ads was run
+          - name: paid_source
+            description: Where the Ads was placed, in this case all are Adwords
+          - name: campaign_key
+            description: primary key
+          - name: camPGN_name
+            description: Campaign name
+          - name: ads_cost
+            description: Cost of the Ads
+          - name: impression
+            description: nb of impressions
+          - name: click
+            description: nb of clicks
+
+       - name: facebook
+         identifier: raw_gz_facebook
+         description: Ads Facebook Ads cost, impressions, clicks.
+         columns:
+          - name: date_date
+            description: date where the Ads was run
+          - name: paid_source
+            description: Where the Ads was placed, in this case all are Adwords
+          - name: campaign_key
+            description: primary key
+          - name: camPGN_name
+            description: Campaign name
+          - name: ads_cost
+            description: Cost of the Ads
+          - name: impression
+            description: nb of impressions
+          - name: click
+            description: nb of clicks
