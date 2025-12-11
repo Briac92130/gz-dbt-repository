@@ -12,7 +12,7 @@ sources:
        - name: raw_gz_product
          identifier: raw_gz_product
          description: product of Greenweez 
-         loaded_at_field: products_id
+         loaded_at_field: _etl_loaded_at
          columns:
            - name: purchase_price
              description: purchase price   
@@ -26,7 +26,7 @@ sources:
        - name: raw_gz_sales
          identifier: raw_gz_sales
          description: sales of Greenweez / we have on row per product_id found in each orders_id
-         loaded_at_field: date_date
+         loaded_at_field: _etl_loaded_at
          columns:
            - name: date_date
              description: date of purchase
@@ -45,7 +45,7 @@ sources:
        - name: raw_gz_ship
          identifier: raw_gz_ship
          description: shipping cost of Greenweez / we have on row per orders_id found in each shipping_fee
-         loaded_at_field: orders_id
+         loaded_at_field: _etl_loaded_at
          columns:
            - name: orders_id
              description: orders_id
